@@ -16,6 +16,10 @@ RUN bun install --frozen-lockfile && bun run build
 # Remove node_modules and reinstall only production dependencies
 RUN rm -rf node_modules && bun install --production --frozen-lockfile
 
+
+# -------------------------------------------------------
+
+
 # Stage 2: Production Stage
 FROM node:21.5.0-alpine
 
