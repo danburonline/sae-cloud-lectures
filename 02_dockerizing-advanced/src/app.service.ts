@@ -37,4 +37,8 @@ export class AppService {
       randomWords: result.join(' '),
     };
   }
+
+  getHealth(): string {
+    return 'OK';
+  }
 }

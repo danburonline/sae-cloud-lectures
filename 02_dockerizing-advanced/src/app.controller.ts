@@ -9,4 +9,9 @@ export class AppController {
   getRandomData(): { timestamp: string; randomWords: string } {
     return this.appService.getRandomData();
   }
+
+  @Get('health')
+  getHealth(): string {
+    return this.appService.getHealth();
+  }
 }
