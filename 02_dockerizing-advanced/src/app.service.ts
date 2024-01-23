@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import * as fs from 'fs';
 
 @Injectable()
 export class AppService {
@@ -30,6 +31,18 @@ export class AppService {
       result.push(word);
       lastWord = word;
     }
+
+    // Constructing the file name
+    const fileName = `${new Date().toISOString()}.json`;
+
+    // Writing data to a file
+    fs.writeFile(fileName, JSON.stringify(result), (err) => {
+      if (err) {
+        console.error(err);
+        return;
+      }
+      console.info(`Random data written to ${fileName}`);
+    });
 
     console.info('Generated random data: ', result.join(' '));
     return {
