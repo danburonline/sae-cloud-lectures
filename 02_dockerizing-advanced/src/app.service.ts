@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import * as fs from 'fs';
+// import * as fs from 'fs';
 
 @Injectable()
 export class AppService {
@@ -17,7 +17,11 @@ export class AppService {
     'lemon',
   ];
 
-  getRandomData(): { timestamp: string; randomWords: string } {
+  getRandomData(): {
+    version: number;
+    timestamp: string;
+    randomWords: string;
+  } {
     const result = [];
     let lastWord = '';
 
@@ -32,26 +36,29 @@ export class AppService {
       lastWord = word;
     }
 
-    // Constructing the file name
-    const fileName = `${new Date().toISOString()}.json`;
+    // // Constructing the file name
+    // const fileName = `${new Date().toISOString()}.json`;
 
-    // Writing data to a file
-    fs.writeFile(fileName, JSON.stringify(result), (err) => {
-      if (err) {
-        console.error(err);
-        return;
-      }
-      console.info(`Random data written to ${fileName}`);
-    });
+    // // Writing data to a file
+    // fs.writeFile(fileName, JSON.stringify(result), (err) => {
+    //   if (err) {
+    //     console.error(err);
+    //     return;
+    //   }
+    //   console.info(`Random data written to ${fileName}`);
+    // });
 
     console.info('Generated random data: ', result.join(' '));
+
     return {
+      version: 1.0,
       timestamp: new Date().toISOString(),
       randomWords: result.join(' '),
     };
   }
 
   getHealth(): string {
+    // Shallow health check, no deep health check needed
     return 'OK';
   }
 }
