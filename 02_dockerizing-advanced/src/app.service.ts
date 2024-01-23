@@ -31,6 +31,7 @@ export class AppService {
       lastWord = word;
     }
 
+    console.info('Generated random data: ', result.join(' '));
     return {
       timestamp: new Date().toISOString(),
       randomWords: result.join(' '),
