@@ -39,5 +39,5 @@ EXPOSE 3000
 # Set the user to node due to security reasons
 USER node
 
-# Run the app
-CMD ["node", "dist/main"]
+# Start the app
+CMD ["node", "dist/main.js"]
