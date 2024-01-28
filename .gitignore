@@ -12,7 +12,8 @@
 
 # .nfs files are created when an open file is removed but is still being accessed
 .nfs*
-
+# Redis
+redis-data
 # ---- VisualStudioCode ----
 .vscode/*
 !.vscode/settings.json
