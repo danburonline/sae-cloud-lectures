@@ -32,5 +32,6 @@ export class AppService {
 
   getHealth(): string {
     return 'OK';
+    // TODO Check if both databases are connected
   }
 }
