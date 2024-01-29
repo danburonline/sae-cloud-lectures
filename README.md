@@ -81,5 +81,5 @@ docker compose up -d
 ### Stop the Docker compose containers
 
 ```bash
-docker-compose down
+docker compose down
 ```
