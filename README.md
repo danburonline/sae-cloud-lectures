@@ -69,13 +69,13 @@ If you are using Docker on a Mac, you need to use the following flag and append 
 ### Build the Docker compose images
 
 ```bash
-docker-compose build
+docker compose build
 ```
 
 ### Run the Docker compose containers
 
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 ### Stop the Docker compose containers
