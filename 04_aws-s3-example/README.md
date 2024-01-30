@@ -13,3 +13,12 @@ This repository contains an example backend app. Next to it is the key artifact:
 
 1. PostgreSQL
 2. Redis
+
+## Apply Terraform infrastructure (Infrastructure as Code)
+
+0. Don't forget to set the AWS credentials on your computer via `aws configure` (be sure to have the AWS CLI installed)
+1. Install Terraform
+2. Run `terraform init` to initialise the Terraform configuration inside the `infrastructure`` directory
+3. Run `terraform plan` to see what changes Terraform will apply
+4. Run `terraform apply` to apply the changes onto AWS
+5. Run `terraform destroy` to destroy the infrastructure on AWS to avoid incurring costs
