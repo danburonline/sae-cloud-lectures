@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import {
   S3Client,
   PutObjectCommand,
@@ -11,6 +11,7 @@ import { ConfigService } from '@nestjs/config';
 @Injectable()
 export class S3Service {
   private s3: S3Client;
+  private readonly logger = new Logger(S3Service.name);
 
   constructor(private configService: ConfigService) {
     this.s3 = new S3Client({
@@ -31,6 +32,8 @@ export class S3Service {
       }),
     );
 
+    this.logger.log('File uploaded successfully onto S3');
+
     return uploadResult;
   }
 
@@ -38,6 +41,8 @@ export class S3Service {
   async listFiles(bucketName: string) {
     const command = new ListObjectsCommand({ Bucket: bucketName });
     const response = await this.s3.send(command);
+
+    this.logger.log('Files retrieved successfully from S3');
     return response.Contents;
   }
 
@@ -53,6 +58,7 @@ export class S3Service {
     });
 
     const signedUrl = await getSignedUrl(this.s3, command, { expiresIn });
+    this.logger.log('Signed URL generated successfully');
 
     return signedUrl;
   }

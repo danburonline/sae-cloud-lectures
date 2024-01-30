@@ -1,9 +1,11 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import pool from './lib/postgres';
 import { redisClient } from './lib/redis';
 
 @Injectable()
 export class AppService {
+  private readonly logger = new Logger(AppService.name);
+
   async getRandomData(): Promise<{
     version: number;
     timestamp: string;
@@ -21,6 +23,10 @@ export class AppService {
     // Store the current random words in Redis for future retrieval
     await redisClient.set('previousRandomWords', currentRandomWords);
 
+    this.logger.log(
+      `Current random words: ${currentRandomWords}, previous random words: ${previousRandomWords}`,
+    );
+
     return {
       version: 1.0,
       timestamp: new Date().toISOString(),
@@ -31,7 +37,8 @@ export class AppService {
   }
 
   getHealth(): string {
-    return 'OK';
+    this.logger.log('Health check performed');
     // TODO Check if both databases are connected
+    return 'OK';
   }
 }
