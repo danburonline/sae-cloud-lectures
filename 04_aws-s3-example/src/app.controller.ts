@@ -4,6 +4,7 @@ import {
   Post,
   UploadedFile,
   UseInterceptors,
+  Query,
 } from '@nestjs/common';
 import { AppService } from './app.service';
 import { S3Service } from './s3.service';
@@ -39,6 +40,34 @@ export class AppController {
     return {
       message: 'File uploaded successfully',
       data: uploadResult,
+    };
+  }
+
+  // New endpoint to list all files in the bucket
+  @Get('files')
+  async listFiles(): Promise<any> {
+    const bucketName = process.env.BUCKET_NAME;
+    const files = await this.s3Service.listFiles(bucketName);
+    return {
+      message: 'Files retrieved successfully',
+      data: files,
+    };
+  }
+
+  @Get('files/download')
+  async getSignedUrl(
+    @Query('fileName') fileName: string,
+    @Query('expiresIn') expiresIn: number,
+  ): Promise<any> {
+    const bucketName = process.env.BUCKET_NAME;
+    const signedUrl = await this.s3Service.getSignedUrl(
+      bucketName,
+      fileName,
+      expiresIn,
+    );
+    return {
+      message: 'Signed URL generated successfully',
+      url: signedUrl,
     };
   }
 }
