@@ -31,7 +31,7 @@ export class AppController {
     return this.appService.getHealth();
   }
 
-  @Post('files')
+  @Post('file')
   @UseInterceptors(FileInterceptor('file'))
   async uploadFile(@UploadedFile() file: Express.Multer.File): Promise<any> {
     const bucketName = process.env.BUCKET_NAME;
