@@ -1,0 +1,63 @@
+{
+  "v": 2,
+  "name": "SAE Cloud Lecture",
+  "folders": [],
+  "requests": [
+    {
+      "v": "1",
+      "name": "Upload File",
+      "endpoint": "http://localhost:5000/files",
+      "method": "POST",
+      "headers": [],
+      "params": [],
+      "auth": { "authType": "none", "authActive": true },
+      "body": {
+        "contentType": "multipart/form-data",
+        "body": [
+          { "key": "file", "value": [{}], "active": true, "isFile": true }
+        ]
+      },
+      "preRequestScript": "",
+      "testScript": ""
+    },
+    {
+      "v": "1",
+      "name": "List Files",
+      "endpoint": "http://localhost:5000/files/download",
+      "method": "GET",
+      "headers": [],
+      "params": [
+        { "key": "fileName", "value": "example.png", "active": true },
+        { "key": "expiresIn", "value": "3000", "active": true }
+      ],
+      "auth": { "authType": "none", "authActive": true },
+      "body": {
+        "contentType": "multipart/form-data",
+        "body": [
+          { "key": "file", "value": [{}], "active": true, "isFile": true }
+        ]
+      },
+      "preRequestScript": "",
+      "testScript": ""
+    },
+    {
+      "v": "1",
+      "name": "List Files",
+      "endpoint": "http://localhost:5000/files",
+      "method": "GET",
+      "headers": [],
+      "params": [],
+      "auth": { "authType": "none", "authActive": true },
+      "body": {
+        "contentType": "multipart/form-data",
+        "body": [
+          { "key": "file", "value": [{}], "active": true, "isFile": true }
+        ]
+      },
+      "preRequestScript": "",
+      "testScript": ""
+    }
+  ],
+  "headers": [],
+  "auth": { "authType": "inherit", "authActive": false }
+}
